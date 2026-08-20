@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "causal-scientist-evals"
+version = "0.1.0"
+description = "Research prototype for executable causal-hypothesis evaluation of AI-scientist agents"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Jingqiu Ding", email = "jingqiu.ding@inf.ethz.ch" },
+]
+keywords = [
+  "ai-evaluation",
+  "ai-safety",
+  "causal-inference",
+  "inspect-ai",
+  "scientific-agents",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.optional-dependencies]
+inspect = ["inspect-ai>=0.3.259,<0.4"]
+dev = [
+  "pytest>=8,<10",
+  "ruff>=0.9,<1",
+]
+
+[project.scripts]
+causal-eval = "causal_scientist_evals.cli:main"
+
+[project.entry-points.inspect_ai]
+causal_scientist_evals = "causal_scientist_evals._registry"
+
+[project.urls]
+Homepage = "https://github.com/jingqiuding/causal-scientist-evals"
+Repository = "https://github.com/jingqiuding/causal-scientist-evals"
+Issues = "https://github.com/jingqiuding/causal-scientist-evals/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/causal_scientist_evals"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
