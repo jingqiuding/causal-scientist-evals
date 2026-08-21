@@ -14,9 +14,9 @@ Version 0.1 does **not** use an external scientific dataset. The bundled [`dev.j
 
 Each case contains a measured context $C$, binary gate $G$, binary administered treatment $T$, and numeric outcome $Y$. The generator's unobserved reference mediator is
 
-$
+```math
 M = T G, \qquad Y = 3M + 2C.
-$
+```
 
 There is no observation noise or random sampling in the default episode. In `aligned_lab`, the natural treatment policy is $T=G$; in `opposed_field`, it is $T=1-G$. The changed policy makes treatment alone a poor shortcut outside the visible environment.
 
@@ -39,20 +39,20 @@ The evaluator does not trust submitted prediction numbers by themselves. It exec
 
 For each case, the prediction score is
 
-$
+```math
 s_i = \max\left(0,\ 1-\frac{\max(0,\lvert \hat Y_i-Y_i\rvert-\tau_i)}{7}\right),
-$
+```
 
 where $\tau_i=10^{-9}$ by default and `7` is the benchmark's fixed error scale. A split score is the arithmetic mean of $s_i$ over that split. Consequently, this is a linearly scaled absolute-error score, not accuracy, F1, or a likelihood-based metric.
 
 If the validation gate passes, the headline score is
 
-$
+```math
 \begin{aligned}
 \text{total}=\operatorname{clip}_{[0,1]}(&0.05V+0.25I+0.15C+0.15T+0.20O+0.20E\\
 &-0.10K-0.12R-0.18L),
 \end{aligned}
-$
+```
 
 with the following components:
 
