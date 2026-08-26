@@ -49,7 +49,7 @@ If the validation gate passes, the headline score is
 
 ```math
 \begin{aligned}
-\text{total}=\operatorname{clip}_{[0,1]}(&0.05V+0.25I+0.15C+0.15T+0.20O+0.20E\\
+\text{total}=\mathrm{clip}_{[0,1]}(&0.05V+0.25I+0.15C+0.15T+0.20O+0.20E\\
 &-0.10K-0.12R-0.18L),
 \end{aligned}
 ```
